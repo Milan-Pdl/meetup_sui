@@ -6,3 +6,5 @@ python-dotenv
 pydantic
 cloudinary
 dnspython
+gunicorn
+uvicorn
