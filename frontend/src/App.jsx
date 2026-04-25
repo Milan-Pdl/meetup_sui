@@ -8,7 +8,7 @@ import InterestTrap from "./scenes/InterestTrap";
 import Questions from "./scenes/Questions";
 import Finale from "./scenes/Finale";
 
-const API = "http://localhost:8000";
+const API = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 const INITIAL_ANSWERS = {
   name: "",
