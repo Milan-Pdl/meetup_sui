@@ -17,6 +17,7 @@ const INITIAL_ANSWERS = {
   favorite_food: "",
   favorite_drink: "",
   had_divorce: false,
+  samira_answer: "",
 };
 
 export default function App() {

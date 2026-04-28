@@ -89,6 +89,10 @@ ROASTS = {
         "{v} — a person who shaped the chaos you are today.",
         "Pour one out for {v}. They tried their best.",
     ],
+    "samira_answer": [
+        "{v}? Alright, see you there.",
+        "Okay, {v} it is.",
+    ],
 }
 
 def get_roast(field: str, value: str) -> str:
@@ -103,6 +107,7 @@ class MeetupResponse(BaseModel):
     favorite_food: str
     favorite_drink: str
     had_divorce: bool
+    samira_answer: str
 
 class SubmitResponse(BaseModel):
     message: str
@@ -142,6 +147,7 @@ async def submit_response(data: MeetupResponse):
             "favorite_food": get_roast("favorite_food", data.favorite_food),
             "favorite_drink": get_roast("favorite_drink", data.favorite_drink),
             "had_divorce": get_roast("had_divorce", str(data.had_divorce)),
+            "samira_answer": get_roast("samira_answer", data.samira_answer),
         }
         return SubmitResponse(
             message="You're in. Or at least we'll pretend you are. 😈",

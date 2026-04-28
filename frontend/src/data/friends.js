@@ -46,6 +46,11 @@ export const FRIENDS = {
     title: "Final Invite",
     ...makeBlobAvatar("🎉", "#6c3483", "#ff3cac"),
   },
+  samira: {
+    name: "Samira",
+    title: "Yoo wassupp justin?",
+    ...makeBlobAvatar("😎", "#11998e", "#38ef7d"),
+  },
   // Aliases used in scene files.
   casey: undefined,
   riley: undefined,
@@ -100,6 +105,16 @@ export const QUESTIONS = [
     type: "yesno",
     emoji: "💔",
   },
+  {
+    id: "samira_q",
+    field: "samira_answer",
+    friend: "samira",
+    question: "Yoo wassupp justin? hami kaha vetna ta??",
+    subtext: "place ko name vana la.",
+    type: "text",
+    placeholder: "e.g. Cafe, Park, Mars...",
+    emoji: "📍",
+  },
 ];
 
 export const AFTER_ANSWERS = {
@@ -126,5 +141,8 @@ export const AFTER_ANSWERS = {
     "Say no more. We understand everything now.",
     "That explains the energy. We love it.",
     "Noted. Adding extra snacks for you specifically.",
+  ],
+  samira_answer: [
+    "thankyou for being honest babe",
   ],
 };

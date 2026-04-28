@@ -28,6 +28,8 @@ FRIEND_FOLDERS = {
     # sudipp while asking drink
     "kiran": "meetup/kiran",
     # kiran while asking divorce
+    "samira": "meetup/samira",
+    # samira asking meetup place
     "last": "meetup/last",
     # last while asking last question and making a poster
 }
