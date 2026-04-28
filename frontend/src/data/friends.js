@@ -48,7 +48,7 @@ export const FRIENDS = {
   },
   samira: {
     name: "Samira",
-    title: "Yoo wassupp justin?",
+    title: "The Eptitome of Beauty",
     ...makeBlobAvatar("😎", "#11998e", "#38ef7d"),
   },
   // Aliases used in scene files.
@@ -109,8 +109,8 @@ export const QUESTIONS = [
     id: "samira_q",
     field: "samira_answer",
     friend: "samira",
-    question: "Yoo wassupp justin? hami kaha vetna ta??",
-    subtext: "place ko name vana la.",
+    question: "Yoo wassupp justin? where do we meet??",
+    subtext: "thau ko name vana ta",
     type: "text",
     placeholder: "e.g. Cafe, Park, Mars...",
     emoji: "📍",
