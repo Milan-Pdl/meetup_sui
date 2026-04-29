@@ -17,10 +17,8 @@ export default function Questions({ onUpdate, answers, photos }) {
   const [step, setStep] = useState(0);
   const [value, setValue] = useState("");
   const [yesNo, setYesNo] = useState(null);
-  const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState("");
   const inputRef = useRef(null);
-  const audioRef = useRef(null);
 
   const q = QUESTIONS[step];
 
@@ -30,10 +28,22 @@ export default function Questions({ onUpdate, answers, photos }) {
     setShowComment(false);
     if (inputRef.current) inputRef.current.focus();
 
-    // Trigger audio for Samira
-    if (q.id === "samira_q" && photos?.samira_audio && audioRef.current) {
-      audioRef.current.play().catch(e => console.log("Audio autoplay blocked or failed:", e));
+    // Trigger audio for Samira using native Audio object
+    let audioObj = null;
+    if (q.id === "samira_q" && photos?.samira_audio) {
+      // Append .mp4 if it doesn't have an extension to ensure browser compatibility
+      const audioUrl = photos.samira_audio.includes('.') ? photos.samira_audio : `${photos.samira_audio}.mp4`;
+      audioObj = new Audio(audioUrl);
+      audioObj.loop = true;
+      audioObj.play().catch(e => console.error("Audio playback failed:", e));
     }
+
+    return () => {
+      if (audioObj) {
+        audioObj.pause();
+        audioObj.src = "";
+      }
+    };
   }, [step, photos, q.id]);
 
   const handleAnswer = () => {
@@ -101,16 +111,6 @@ export default function Questions({ onUpdate, answers, photos }) {
           exit={{ opacity: 0, x: -80 }}
           transition={{ type: "spring", stiffness: 120, damping: 18 }}
         >
-          {/* Audio for Samira */}
-          {q.id === "samira_q" && photos?.samira_audio && (
-            <audio 
-              ref={audioRef} 
-              src={photos.samira_audio} 
-              loop 
-              style={{ width: 0, height: 0, visibility: "hidden", position: "absolute" }} 
-            />
-          )}
-
           {/* Friend asking */}
           <FriendBubble
             friendKey={q.friend}
