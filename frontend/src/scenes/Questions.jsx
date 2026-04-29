@@ -20,6 +20,7 @@ export default function Questions({ onUpdate, answers, photos }) {
   const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState("");
   const inputRef = useRef(null);
+  const audioRef = useRef(null);
 
   const q = QUESTIONS[step];
 
@@ -28,7 +29,12 @@ export default function Questions({ onUpdate, answers, photos }) {
     setYesNo(null);
     setShowComment(false);
     if (inputRef.current) inputRef.current.focus();
-  }, [step]);
+
+    // Trigger audio for Samira
+    if (q.id === "samira_q" && photos?.samira_audio && audioRef.current) {
+      audioRef.current.play().catch(e => console.log("Audio autoplay blocked or failed:", e));
+    }
+  }, [step, photos, q.id]);
 
   const handleAnswer = () => {
     const finalVal = q.type === "yesno" ? yesNo : value.trim();
@@ -97,7 +103,12 @@ export default function Questions({ onUpdate, answers, photos }) {
         >
           {/* Audio for Samira */}
           {q.id === "samira_q" && photos?.samira_audio && (
-            <audio src={photos.samira_audio} autoPlay loop style={{ display: "none" }} />
+            <audio 
+              ref={audioRef} 
+              src={photos.samira_audio} 
+              loop 
+              style={{ width: 0, height: 0, visibility: "hidden", position: "absolute" }} 
+            />
           )}
 
           {/* Friend asking */}
