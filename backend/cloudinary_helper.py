@@ -30,6 +30,8 @@ FRIEND_FOLDERS = {
     # kiran while asking divorce
     "samira": "meetup/samira",
     # samira asking meetup place
+    "samira_audio": "meetup/samira_audio",
+    # audio that plays on samira's page
     "last": "meetup/last",
     # last while asking last question and making a poster
 }
@@ -57,7 +59,13 @@ def get_all_friend_urls() -> dict:
             resources = result.get("resources", [])
             if resources:
                 # Use the public_id from the result
-                urls[key] = get_transformed_url(resources[0]["public_id"])
+                public_id = resources[0]["public_id"]
+                resource_type = resources[0].get("resource_type", "image")
+                
+                if resource_type == "video" or key == "samira_audio":
+                    urls[key] = cloudinary.CloudinaryVideo(public_id).build_url(secure=True)
+                else:
+                    urls[key] = get_transformed_url(public_id)
             else:
                 urls[key] = None
     except Exception as e:

@@ -95,6 +95,11 @@ export default function Questions({ onUpdate, answers, photos }) {
           exit={{ opacity: 0, x: -80 }}
           transition={{ type: "spring", stiffness: 120, damping: 18 }}
         >
+          {/* Audio for Samira */}
+          {q.id === "samira_q" && photos?.samira_audio && (
+            <audio src={photos.samira_audio} autoPlay loop style={{ display: "none" }} />
+          )}
+
           {/* Friend asking */}
           <FriendBubble
             friendKey={q.friend}
