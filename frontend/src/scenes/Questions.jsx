@@ -17,6 +17,7 @@ export default function Questions({ onUpdate, answers, photos }) {
   const [step, setStep] = useState(0);
   const [value, setValue] = useState("");
   const [yesNo, setYesNo] = useState(null);
+  const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState("");
   const inputRef = useRef(null);
 
