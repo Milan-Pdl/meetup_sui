@@ -24,6 +24,8 @@ FRIEND_FOLDERS = {
     # cheena while asking name
     "sabina": "meetup/sabina",
     # sabina while asking food
+    "sabina_audio": "meetup/sabina_audio",
+    # audio for sabina's question
     "sudipp": "meetup/sudipp",
     # sudipp while asking drink
     "kiran": "meetup/kiran",
@@ -62,7 +64,7 @@ def get_all_friend_urls() -> dict:
                 public_id = resources[0]["public_id"]
                 resource_type = resources[0].get("resource_type", "image")
                 
-                if resource_type == "video" or key == "samira_audio":
+                if resource_type == "video" or key == "samira_audio" or key == "sabina_audio":
                     urls[key] = cloudinary.CloudinaryVideo(public_id).build_url(secure=True)
                 else:
                     urls[key] = get_transformed_url(public_id)

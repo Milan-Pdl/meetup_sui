@@ -31,9 +31,17 @@ export default function Questions({ onUpdate, answers, photos }) {
 
     // Trigger audio for Samira using native Audio object
     let audioObj = null;
+    let targetAudioUrl = null;
+
     if (q.id === "samira_q" && photos?.samira_audio) {
+      targetAudioUrl = photos.samira_audio;
+    } else if (q.id === "food" && photos?.sabina_audio) {
+      targetAudioUrl = photos.sabina_audio;
+    }
+
+    if (targetAudioUrl) {
       // Append .mp4 if it doesn't have an extension to ensure browser compatibility
-      const audioUrl = photos.samira_audio.includes('.') ? photos.samira_audio : `${photos.samira_audio}.mp4`;
+      const audioUrl = targetAudioUrl.includes('.') ? targetAudioUrl : `${targetAudioUrl}.mp4`;
       audioObj = new Audio(audioUrl);
       audioObj.loop = true;
       audioObj.play().catch(e => console.error("Audio playback failed:", e));
